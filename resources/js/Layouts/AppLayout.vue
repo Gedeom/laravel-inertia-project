@@ -8,12 +8,15 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import Footer from '@/Components/Footer.vue';
+
 
 defineProps({
     title: String,
 });
 
 const showingNavigationDropdown = ref(false);
+
 
 const switchToTeam = (team) => {
     Inertia.put(route('current-team.update'), {
@@ -52,6 +55,14 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
+
+                                <NavLink :href="route('suppliers.index')" :active="route().current('suppliers.index')">
+                                    Fornecedores
+                                </NavLink>
+
+                                <NavLink :href="route('users')" :active="route().current('users')">
+                                    Users
+                                </NavLink>
                             </div>
                         </div>
 
@@ -62,7 +73,7 @@ const logout = () => {
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
-                                                {{ $page.props.user.current_team.name }}
+                                                {{ $page.props.user.current_team?.name || 'Time' }}
 
                                                 <svg
                                                     class="ml-2 -mr-0.5 h-4 w-4"
@@ -85,7 +96,7 @@ const logout = () => {
                                                 </div>
 
                                                 <!-- Team Settings -->
-                                                <DropdownLink :href="route('teams.show', $page.props.user.current_team)">
+                                                <DropdownLink v-if="$page.props.user.current_team" :href="route('teams.show', $page.props.user.current_team)">
                                                     Team Settings
                                                 </DropdownLink>
 
@@ -96,7 +107,7 @@ const logout = () => {
                                                 <div class="border-t border-gray-100" />
 
                                                 <!-- Team Switcher -->
-                                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                                <div class="block px-4 py-2 text-xs text-gray-400" v-if="$page.props.user.all_teams.length">
                                                     Switch Teams
                                                 </div>
 
@@ -247,7 +258,7 @@ const logout = () => {
                             </form>
 
                             <!-- Team Management -->
-                            <template v-if="$page.props.jetstream.hasTeamFeatures">
+                            <template v-if="$page.props.jetstream.hasTeamFeatures && $page.props.user.current_team">
                                 <div class="border-t border-gray-200" />
 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
@@ -306,6 +317,11 @@ const logout = () => {
             <main>
                 <slot />
             </main>
+
+            <Footer />
         </div>
+
+        
     </div>
+    
 </template>

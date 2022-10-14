@@ -49,7 +49,7 @@ const updatePassword = () => {
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="current_password" value="Current Password" />
+                <div class="relative z-0">
                 <TextInput
                     id="current_password"
                     ref="currentPasswordInput"
@@ -58,11 +58,13 @@ const updatePassword = () => {
                     class="mt-1 block w-full"
                     autocomplete="current-password"
                 />
+                <InputLabel for="current_password" value="Current Password" />
+                </div>
                 <InputError :message="form.errors.current_password" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="password" value="New Password" />
+                <div class="relative z-0">
                 <TextInput
                     id="password"
                     ref="passwordInput"
@@ -71,11 +73,13 @@ const updatePassword = () => {
                     class="mt-1 block w-full"
                     autocomplete="new-password"
                 />
+                <InputLabel for="password" value="New Password" />
+                </div>
                 <InputError :message="form.errors.password" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
+                <div class="relative z-0">
                 <TextInput
                     id="password_confirmation"
                     v-model="form.password_confirmation"
@@ -83,6 +87,8 @@ const updatePassword = () => {
                     class="mt-1 block w-full"
                     autocomplete="new-password"
                 />
+                <InputLabel for="password_confirmation" value="Confirm Password" />
+                </div>
                 <InputError :message="form.errors.password_confirmation" class="mt-2" />
             </div>
         </template>

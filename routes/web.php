@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\StateController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,4 +36,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::get('/users', UserController::class)->name('users');
+    Route::resource('suppliers', SupplierController::class);
+    Route::resource('states', StateController::class);
+    Route::resource('cities', CityController::class);
+    Route::get('getCitiesByState/{state}', [CityController::class,'getByState'])->name('cities.getByState');
+
 });

@@ -53,7 +53,7 @@ const updateTeamName = () => {
 
             <!-- Team Name -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Team Name" />
+                <div class="relative z-0">
 
                 <TextInput
                     id="name"
@@ -62,6 +62,9 @@ const updateTeamName = () => {
                     class="mt-1 block w-full"
                     :disabled="! permissions.canUpdateTeam"
                 />
+                <InputLabel for="name" value="Team Name" />
+
+                </div>
 
                 <InputError :message="form.errors.name" class="mt-2" />
             </div>

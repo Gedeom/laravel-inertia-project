@@ -18353,6 +18353,38 @@
      
 }
 
+    namespace Inertia { 
+            /**
+     * 
+     *
+     */ 
+        class Response {
+                    /**
+         * 
+         *
+         * @see \ProtoneMedia\LaravelQueryBuilderInertiaJs\InertiaTableServiceProvider::boot()
+         * @static 
+         */ 
+        public static function getQueryBuilderProps()
+        {
+                        return \Inertia\Response::getQueryBuilderProps();
+        }
+                    /**
+         * 
+         *
+         * @see \ProtoneMedia\LaravelQueryBuilderInertiaJs\InertiaTableServiceProvider::boot()
+         * @param callable|null $withTableBuilder
+         * @static 
+         */ 
+        public static function table($withTableBuilder = null)
+        {
+                        return \Inertia\Response::table($withTableBuilder);
+        }
+         
+    }
+     
+}
+
 
 namespace  { 
             class App extends \Illuminate\Support\Facades\App {}

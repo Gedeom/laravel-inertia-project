@@ -45,14 +45,15 @@ const createTeam = () => {
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Team Name" />
+                <div class="relative z-0">
                 <TextInput
                     id="name"
                     v-model="form.name"
                     type="text"
-                    class="block w-full mt-1"
                     autofocus
                 />
+                <InputLabel for="name" value="Team Name" />
+                </div>
                 <InputError :message="form.errors.name" class="mt-2" />
             </div>
         </template>
